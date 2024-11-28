@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Шаг 6 - SELECT - операторы сравнения, логические и специальные &mdash; документация Первые Шаги </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=372fde1a"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=5b699b7f"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Шаг 7 - Обобщение данных с помощью агрегатных функций" href="07.agregate.html" />
+    <link rel="prev" title="Шаг 5 - SELECT - дальше и глубже" href="05.query2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Первые Шаги
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../db.html">Введение в Базы данных</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="__index.html">SQLITE шаг за шагом</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01.install.html">Шаг 1. Установка</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.createdatabase.html">Шаг 2 - Создание и удаление БД</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.create.html">Шаг 3 - Создание и удаление таблиц</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.query.html">Шаг 4 - Извлечение информации из таблиц</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.query2.html">Шаг 5 - SELECT - дальше и глубже</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Шаг 6 - SELECT - операторы сравнения, логические и специальные</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Операторы отношения</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Логические операторы</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#or">Оператор OR или</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#not">Оператор NOT инвертирования</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Группировка условий и выражений</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#in-between-like-is-null">Операторы: IN, BETWEEN, LIKE, IS NULL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#between">Оператор BETWEEN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#like">Оператор LIKE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#null-is-null">NULL и is NULL</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="07.agregate.html">Шаг 7 - Обобщение данных с помощью агрегатных функций</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08.join.html">Шаг 8 - Выбор данных из нескольких таблиц</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09.inner.html">Шаг 9 - Помещение одного запроса внутрь другого</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10.relquery.html">Шаг 10 - Связанные подзапросы</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11.exists.html">Шаг 11 - Использование оператора EXISTS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12.anyall.html">Шаг 12 - Использование операторов ANY, ALL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13.union.html">Шаг 13 - Использование команды UNION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14.update.html">Шаг 14 - Ввод, удаление и изменение значений полей</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mssql.html">Microsoft SQL Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mysql.html">MYSQL</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Первые Шаги</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Навигация по страницам">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="__index.html">SQLITE шаг за шагом</a></li>
+      <li class="breadcrumb-item active">Шаг 6 - SELECT - операторы сравнения, логические и специальные</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sqlite/06.query3.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="select">
+<h1>Шаг 6 - SELECT - операторы сравнения, логические и специальные<a class="headerlink" href="#select" title="Ссылка на этот заголовок"></a></h1>
+<p>В данном разделе используется база <strong>db_example/custom</strong></p>
+<section id="id1">
+<h2>Операторы отношения<a class="headerlink" href="#id1" title="Ссылка на этот заголовок"></a></h2>
+<p>На предыдущем шаге мы использовали оператор равенства <code class="docutils literal notranslate"><span class="pre">=</span></code> в предложении
+<code class="docutils literal notranslate"><span class="pre">WHERE</span></code> для выбора записей из таблиц. SQL позволяет строить сложные условия
+отбора записей и для этого предоставляет операторы отношения,
+логические операторы и специальные операторы.</p>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<div class="line-block">
+<div class="line">Операторы отношения это:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">=</span></code> Равно</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&gt;</span></code> Больше чем</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;</span></code> Меньше чем</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> Больше или равно</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> Меньше или равно</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code> Не равно</div>
+</div>
+</div>
+<p>Они имеют стандартные значения для символьных значений и дат.
+Символьные значения сравниваются в терминах их кодов.
+Предположим, что нам надо увидеть всех заказчиков <strong>customers</strong> в <strong>creditLimit</strong> выше 59000:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">select</span><span class="w"> </span><span class="n">customerName</span><span class="p">,</span><span class="n">creditLimit</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">creditLimit</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">59000</span><span class="w"> </span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Результат таков:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="c1">------------------------------------+-------------+</span>
+<span class="o">|</span><span class="w">            </span><span class="n">customerName</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">creditLimit</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------------+-------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Signal</span><span class="w"> </span><span class="n">Gift</span><span class="w"> </span><span class="n">Stores</span><span class="w">                 </span><span class="o">|</span><span class="w"> </span><span class="mi">71800</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Australian</span><span class="w"> </span><span class="n">Collectors</span><span class="p">,</span><span class="w"> </span><span class="n">Co</span><span class="p">.</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="mi">117300</span><span class="w">      </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">La</span><span class="w"> </span><span class="n">Rochelle</span><span class="w"> </span><span class="n">Gifts</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="mi">118200</span><span class="w">      </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Baane</span><span class="w"> </span><span class="n">Mini</span><span class="w"> </span><span class="n">Imports</span><span class="w">                 </span><span class="o">|</span><span class="w"> </span><span class="mi">81700</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Mini</span><span class="w"> </span><span class="n">Gifts</span><span class="w"> </span><span class="n">Distributors</span><span class="w"> </span><span class="n">Ltd</span><span class="p">.</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">210500</span><span class="w">      </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Blauer</span><span class="w"> </span><span class="n">See</span><span class="w"> </span><span class="n">Auto</span><span class="p">,</span><span class="w"> </span><span class="n">Co</span><span class="p">.</span><span class="w">               </span><span class="o">|</span><span class="w"> </span><span class="mi">59700</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Mini</span><span class="w"> </span><span class="n">Wheels</span><span class="w"> </span><span class="n">Co</span><span class="p">.</span><span class="w">                    </span><span class="o">|</span><span class="w"> </span><span class="mi">64600</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Land</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">Toys</span><span class="w"> </span><span class="n">Inc</span><span class="p">.</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="mi">114900</span><span class="w">      </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------------+-------------+</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>Логические операторы<a class="headerlink" href="#id2" title="Ссылка на этот заголовок"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<div class="line-block">
+<div class="line">Логические операторы:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">AND</span></code> логическое «И»</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">OR</span></code> логическое «ИЛИ»</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">NOT</span></code> логическое отрицание</div>
+</div>
+</div>
+<p>Оператор <code class="docutils literal notranslate"><span class="pre">AND</span></code> сравнивает два логических значения и возвращает <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> (истина),
+если оба значения истинны (т.е. равны <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>), в остальных случаях - <code class="docutils literal notranslate"><span class="pre">FALSE`</span> <span class="pre">(ложь).</span>
+<span class="pre">Оператор</span> <span class="pre">``OR</span></code> возвращает <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>, если хотя бы один из аргументов равен <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>.
+Оператор <code class="docutils literal notranslate"><span class="pre">NOT</span></code> возвращает <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>, если его аргумент равен <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> и наоборот.</p>
+<p>Использование логических операторов значительно увеличивает возможности команды
+<code class="docutils literal notranslate"><span class="pre">SELECT</span></code>. Например, для просмотра заказчиков из <strong>Madrid</strong>, которые имеют
+<strong>creditLimit</strong> выше 0 достаточно команды:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">select</span><span class="w"> </span><span class="n">customerName</span><span class="p">,</span><span class="n">city</span><span class="p">,</span><span class="n">country</span><span class="p">,</span><span class="n">creditLimit</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">customers</span>
+<span class="k">where</span><span class="w"> </span><span class="n">city</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Madrid&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">creditLimit</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>В нашей БД имеется только три заказчика, удовлетворяющий этому условию.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="c1">----------------------------+--------+---------+-------------+</span>
+<span class="o">|</span><span class="w">        </span><span class="n">customerName</span><span class="w">        </span><span class="o">|</span><span class="w">  </span><span class="n">city</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">creditLimit</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------+--------+---------+-------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Euro</span><span class="o">+</span><span class="w"> </span><span class="n">Shopping</span><span class="w"> </span><span class="n">Channel</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">227600</span><span class="w">      </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">CAF</span><span class="w"> </span><span class="n">Imports</span><span class="w">                </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">59600</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Corrida</span><span class="w"> </span><span class="n">Auto</span><span class="w"> </span><span class="n">Replicas</span><span class="p">,</span><span class="w"> </span><span class="n">Ltd</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">104600</span><span class="w">      </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------+--------+---------+-------------+</span>
+</pre></div>
+</div>
+</section>
+<section id="or">
+<h2>Оператор OR или<a class="headerlink" href="#or" title="Ссылка на этот заголовок"></a></h2>
+<p>Если использовать <code class="docutils literal notranslate"><span class="pre">OR</span></code>, то получим всех заказчиков, находящихся в <strong>Madrid</strong>
+или в <strong>Los Angeles</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">select</span><span class="w"> </span><span class="n">customerName</span><span class="p">,</span><span class="n">city</span><span class="p">,</span><span class="n">country</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">customers</span>
+<span class="k">where</span><span class="w"> </span><span class="n">city</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Madrid&#39;</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">city</span><span class="o">=</span><span class="s1">&#39;Los Angeles&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Результат запроса:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="c1">----------------------------+-------------+---------+</span>
+<span class="o">|</span><span class="w">        </span><span class="n">customerName</span><span class="w">        </span><span class="o">|</span><span class="w">    </span><span class="n">city</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------+-------------+---------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Euro</span><span class="o">+</span><span class="w"> </span><span class="n">Shopping</span><span class="w"> </span><span class="n">Channel</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">ANG</span><span class="w"> </span><span class="n">Resellers</span><span class="w">              </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">CAF</span><span class="w"> </span><span class="n">Imports</span><span class="w">                </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Men</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="n">US</span><span class="w"> </span><span class="n">Retailers</span><span class="p">,</span><span class="w"> </span><span class="n">Ltd</span><span class="p">.</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">Los</span><span class="w"> </span><span class="n">Angeles</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">USA</span><span class="w">     </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Corrida</span><span class="w"> </span><span class="n">Auto</span><span class="w"> </span><span class="n">Replicas</span><span class="p">,</span><span class="w"> </span><span class="n">Ltd</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Anton</span><span class="w"> </span><span class="n">Designs</span><span class="p">,</span><span class="w"> </span><span class="n">Ltd</span><span class="p">.</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------+-------------+---------+</span>
+</pre></div>
+</div>
+</section>
+<section id="not">
+<h2>Оператор NOT инвертирования<a class="headerlink" href="#not" title="Ссылка на этот заголовок"></a></h2>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">NOT</span></code> используется для инвертирования значений. Запрос:</p>
+</div></blockquote>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">select</span><span class="w"> </span><span class="n">customerName</span><span class="p">,</span><span class="n">city</span><span class="p">,</span><span class="n">country</span><span class="p">,</span><span class="n">creditLimit</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">customers</span>
+<span class="k">where</span><span class="w"> </span><span class="n">city</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Madrid&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">not</span><span class="w">  </span><span class="n">creditLimit</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>выдаст:</p>
+<blockquote>
+<div><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="c1">----------------------------+--------+---------+-------------+</span>
+<span class="o">|</span><span class="w">        </span><span class="n">customerName</span><span class="w">        </span><span class="o">|</span><span class="w">  </span><span class="n">city</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">creditLimit</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------+--------+---------+-------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Euro</span><span class="o">+</span><span class="w"> </span><span class="n">Shopping</span><span class="w"> </span><span class="n">Channel</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">227600</span><span class="w">      </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">CAF</span><span class="w"> </span><span class="n">Imports</span><span class="w">                </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">59600</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Corrida</span><span class="w"> </span><span class="n">Auto</span><span class="w"> </span><span class="n">Replicas</span><span class="p">,</span><span class="w"> </span><span class="n">Ltd</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">104600</span><span class="w">      </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------+--------+---------+-------------+</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="id3">
+<h2>Группировка условий и выражений<a class="headerlink" href="#id3" title="Ссылка на этот заголовок"></a></h2>
+<p>Для группировки выражений SQL позволяет использовать круглые скобки ( ). Например:</p>
+<blockquote>
+<div><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">select</span><span class="w"> </span><span class="n">customerName</span><span class="p">,</span><span class="n">city</span><span class="p">,</span><span class="n">country</span><span class="p">,</span><span class="n">creditLimit</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">customers</span>
+<span class="k">where</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="p">(</span><span class="n">city</span><span class="o">=</span><span class="s1">&#39;Madrid&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">creditLimit</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Этот запрос отбирает заказчиков, которые НЕ находятся
+в Madrid или НЕ имеют creditLimit  0. Результат:</p>
+<blockquote>
+<div><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="c1">------------------------------------+-------------------+--------------+-------------+</span>
+<span class="o">|</span><span class="w">            </span><span class="n">customerName</span><span class="w">            </span><span class="o">|</span><span class="w">       </span><span class="n">city</span><span class="w">        </span><span class="o">|</span><span class="w">   </span><span class="n">country</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">creditLimit</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------------+-------------------+--------------+-------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Atelier</span><span class="w"> </span><span class="n">graphique</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="n">Nantes</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">France</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">21000</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Signal</span><span class="w"> </span><span class="n">Gift</span><span class="w"> </span><span class="n">Stores</span><span class="w">                 </span><span class="o">|</span><span class="w"> </span><span class="n">Las</span><span class="w"> </span><span class="n">Vegas</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">USA</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="mi">71800</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Australian</span><span class="w"> </span><span class="n">Collectors</span><span class="p">,</span><span class="w"> </span><span class="n">Co</span><span class="p">.</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">Melbourne</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">Australia</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="mi">117300</span><span class="w">      </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">La</span><span class="w"> </span><span class="n">Rochelle</span><span class="w"> </span><span class="n">Gifts</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="n">Nantes</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">France</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">118200</span><span class="w">      </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Baane</span><span class="w"> </span><span class="n">Mini</span><span class="w"> </span><span class="n">Imports</span><span class="w">                 </span><span class="o">|</span><span class="w"> </span><span class="n">Stavern</span><span class="w">           </span><span class="o">|</span><span class="w"> </span><span class="n">Norway</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">81700</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Mini</span><span class="w"> </span><span class="n">Gifts</span><span class="w"> </span><span class="n">Distributors</span><span class="w"> </span><span class="n">Ltd</span><span class="p">.</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">San</span><span class="w"> </span><span class="n">Rafael</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">USA</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="mi">210500</span><span class="w">      </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Havel</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Zbyszek</span><span class="w"> </span><span class="n">Co</span><span class="w">                 </span><span class="o">|</span><span class="w"> </span><span class="n">Warszawa</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">Poland</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="w">           </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------------+-------------------+--------------+-------------+</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="in-between-like-is-null">
+<h2>Операторы: IN, BETWEEN, LIKE, IS NULL<a class="headerlink" href="#in-between-like-is-null" title="Ссылка на этот заголовок"></a></h2>
+<p>Рассмотрим теперь специальные операторы: <code class="docutils literal notranslate"><span class="pre">IN</span></code>, <code class="docutils literal notranslate"><span class="pre">BETWEEN</span></code>, <code class="docutils literal notranslate"><span class="pre">LIKE</span></code>, <code class="docutils literal notranslate"><span class="pre">IS</span> <span class="pre">NULL</span></code>.</p>
+<p>Оператор <code class="docutils literal notranslate"><span class="pre">IN</span></code> определяет список значений, в который должно входить значение поля.
+Например, если Вы хотите найти всех продавцов находящихся в <strong>Madrid</strong> или <strong>Paris</strong>,
+Вы должны использовать такой запрос:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">customerName</span><span class="p">,</span><span class="n">city</span><span class="p">,</span><span class="n">country</span><span class="p">,</span><span class="n">creditLimit</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">city</span><span class="o">=</span><span class="s1">&#39;Madrid&#39;</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">city</span><span class="o">=</span><span class="s1">&#39;Paris&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Но есть есть более простой способ:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">customerName</span><span class="p">,</span><span class="n">city</span><span class="p">,</span><span class="n">country</span><span class="p">,</span><span class="n">creditLimit</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span><span class="s1">&#39;Madrid&#39;</span><span class="w"> </span><span class="p">,</span><span class="s1">&#39;Paris&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Результат этого запроса:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="c1">----------------------------+--------+---------+-------------+</span>
+<span class="o">|</span><span class="w">        </span><span class="n">customerName</span><span class="w">        </span><span class="o">|</span><span class="w">  </span><span class="n">city</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">creditLimit</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------+--------+---------+-------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Euro</span><span class="o">+</span><span class="w"> </span><span class="n">Shopping</span><span class="w"> </span><span class="n">Channel</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">227600</span><span class="w">      </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">La</span><span class="w"> </span><span class="n">Corne</span><span class="w"> </span><span class="n">Dabondance</span><span class="p">,</span><span class="w"> </span><span class="n">Co</span><span class="p">.</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">Paris</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">France</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">84300</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">ANG</span><span class="w"> </span><span class="n">Resellers</span><span class="w">              </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="w">           </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Lyon</span><span class="w"> </span><span class="n">Souveniers</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">Paris</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">France</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">68100</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">CAF</span><span class="w"> </span><span class="n">Imports</span><span class="w">                </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">59600</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Auto</span><span class="w"> </span><span class="n">Canal</span><span class="o">+</span><span class="w"> </span><span class="n">Petit</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">Paris</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">France</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">95000</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Corrida</span><span class="w"> </span><span class="n">Auto</span><span class="w"> </span><span class="n">Replicas</span><span class="p">,</span><span class="w"> </span><span class="n">Ltd</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">104600</span><span class="w">      </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Anton</span><span class="w"> </span><span class="n">Designs</span><span class="p">,</span><span class="w"> </span><span class="n">Ltd</span><span class="p">.</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">Madrid</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Spain</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="w">           </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------+--------+---------+-------------+</span>
+</pre></div>
+</div>
+<p>Набор значений для оператора <code class="docutils literal notranslate"><span class="pre">IN</span></code> заключается в круглые скобки, значения разделяются запятыми.</p>
+</section>
+<section id="between">
+<h2>Оператор BETWEEN<a class="headerlink" href="#between" title="Ссылка на этот заголовок"></a></h2>
+<p>Оператор <code class="docutils literal notranslate"><span class="pre">BETWEEN</span></code> похож на оператор <code class="docutils literal notranslate"><span class="pre">IN</span></code>. В отличие от списка допустимых
+значений <code class="docutils literal notranslate"><span class="pre">BETWEEN</span></code> определяет диапазон значений. В запросе Вы должны указать
+слово <code class="docutils literal notranslate"><span class="pre">BETWEEN</span></code> затем начальное значение, ключевое слово <code class="docutils literal notranslate"><span class="pre">AND</span></code> и конечное значение.
+Первое значение должно быть меньше второго.
+Следующий запрос выберет заказчиков с creditLimit между 34800 и 55400:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">customerName</span><span class="p">,</span><span class="n">city</span><span class="p">,</span><span class="n">country</span><span class="p">,</span><span class="n">creditLimit</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">creditLimit</span>
+<span class="k">BETWEEN</span><span class="w"> </span><span class="mi">34800</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">55400</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="c1">--------------------------------+----------------+-----------+-------------+</span>
+<span class="o">|</span><span class="w">          </span><span class="n">customerName</span><span class="w">          </span><span class="o">|</span><span class="w">      </span><span class="n">city</span><span class="w">      </span><span class="o">|</span><span class="w">  </span><span class="n">country</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">creditLimit</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------------------+----------------+-----------+-------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Volvo</span><span class="w"> </span><span class="n">Model</span><span class="w"> </span><span class="n">Replicas</span><span class="p">,</span><span class="w"> </span><span class="n">Co</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">Luleå</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">Sweden</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="mi">53100</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Cambridge</span><span class="w"> </span><span class="n">Collectables</span><span class="w"> </span><span class="n">Co</span><span class="p">.</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Cambridge</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">USA</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">43400</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Mini</span><span class="w"> </span><span class="n">Caravy</span><span class="w">                    </span><span class="o">|</span><span class="w"> </span><span class="n">Strasbourg</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">France</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="mi">53800</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Québec</span><span class="w"> </span><span class="n">Home</span><span class="w"> </span><span class="n">Shopping</span><span class="w"> </span><span class="n">Network</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">Montréal</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">Canada</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="mi">48700</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Tekni</span><span class="w"> </span><span class="n">Collectables</span><span class="w"> </span><span class="n">Inc</span><span class="p">.</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">Newark</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">USA</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">43000</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Australian</span><span class="w"> </span><span class="n">Gift</span><span class="w"> </span><span class="n">Network</span><span class="p">,</span><span class="w"> </span><span class="n">Co</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">South</span><span class="w"> </span><span class="n">Brisbane</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Australia</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">51600</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Gifts4AllAges</span><span class="p">.</span><span class="n">com</span><span class="w">              </span><span class="o">|</span><span class="w"> </span><span class="n">Boston</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">USA</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">41900</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Gift</span><span class="w"> </span><span class="n">Ideas</span><span class="w"> </span><span class="n">Corp</span><span class="p">.</span><span class="w">               </span><span class="o">|</span><span class="w"> </span><span class="n">Glendale</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">USA</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">49700</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Mini</span><span class="w"> </span><span class="n">Auto</span><span class="w"> </span><span class="n">Werke</span><span class="w">                </span><span class="o">|</span><span class="w"> </span><span class="n">Graz</span><span class="w">           </span><span class="o">|</span><span class="w"> </span><span class="n">Austria</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">45300</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Microscale</span><span class="w"> </span><span class="n">Inc</span><span class="p">.</span><span class="w">                </span><span class="o">|</span><span class="w"> </span><span class="n">NYC</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">USA</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">39800</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Frau</span><span class="w"> </span><span class="n">da</span><span class="w"> </span><span class="n">Collezione</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="n">Milan</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">Italy</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="mi">34800</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">West</span><span class="w"> </span><span class="n">Coast</span><span class="w"> </span><span class="n">Collectables</span><span class="w"> </span><span class="n">Co</span><span class="p">.</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">Burbank</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="n">USA</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">55400</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Double</span><span class="w"> </span><span class="n">Decker</span><span class="w"> </span><span class="n">Gift</span><span class="w"> </span><span class="n">Stores</span><span class="p">,</span><span class="w"> </span><span class="n">Ltd</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">London</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">UK</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="mi">43300</span><span class="w">       </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">--------------------------------+----------------+-----------+-------------+</span>
+</pre></div>
+</div>
+</section>
+<section id="like">
+<h2>Оператор LIKE<a class="headerlink" href="#like" title="Ссылка на этот заголовок"></a></h2>
+<p>Оператор LIKE применим только к символьным полям, с которыми он используется,
+чтобы находить подстроки. Т.е. он ищет поле символа, чтобы видеть совпадает
+ли с условием часть его строки. В качестве условия он использует специальные символы:</p>
+<p>символ подчеркивания <code class="docutils literal notranslate"><span class="pre">_</span></code> - замещает любой одиночный символ.</p>
+<p>Например, <code class="docutils literal notranslate"><span class="pre">к_т</span></code> будет соответствовать <strong>кот</strong> и <strong>кит</strong>, но не <strong>крот</strong>.
+знак процента <code class="docutils literal notranslate"><span class="pre">%</span></code> - замещает последовательность любого числа символов.
+Например, <code class="docutils literal notranslate"><span class="pre">%м%р</span></code> будет соответствовать <strong>компьютер</strong> и <strong>омар</strong>.
+Давайте выберем заказчиков чьи имена начинаются с буквы <code class="docutils literal notranslate"><span class="pre">&quot;О&quot;</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">customerName</span><span class="p">,</span><span class="n">city</span><span class="p">,</span><span class="n">country</span><span class="p">,</span><span class="n">creditLimit</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">customers</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">customerName</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;O%&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="c1">------------------------------+------------+---------+-------------+</span>
+<span class="o">|</span><span class="w">         </span><span class="n">customerName</span><span class="w">         </span><span class="o">|</span><span class="w">    </span><span class="n">city</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">creditLimit</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------+------------+---------+-------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Osaka</span><span class="w"> </span><span class="n">Souveniers</span><span class="w"> </span><span class="n">Co</span><span class="p">.</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">Kita</span><span class="o">-</span><span class="n">ku</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">Japan</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">81200</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Online</span><span class="w"> </span><span class="n">Mini</span><span class="w"> </span><span class="n">Collectables</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Brickhaven</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">USA</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="mi">68700</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Oulu</span><span class="w"> </span><span class="n">Toy</span><span class="w"> </span><span class="n">Supplies</span><span class="p">,</span><span class="w"> </span><span class="n">Inc</span><span class="p">.</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">Oulu</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">Finland</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">90500</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Online</span><span class="w"> </span><span class="n">Diecast</span><span class="w"> </span><span class="n">Creations</span><span class="w"> </span><span class="n">Co</span><span class="p">.</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Nashua</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">USA</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="mi">114200</span><span class="w">      </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------------+------------+---------+-------------+</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">LIKE</span></code> удобен поиске значений, если Вы точно не помните как они пишутся.
+Вы просто можете использовать ту часть, которую помните.</p>
+</section>
+<section id="null-is-null">
+<h2>NULL и is NULL<a class="headerlink" href="#null-is-null" title="Ссылка на этот заголовок"></a></h2>
+<p>Так как <code class="docutils literal notranslate"><span class="pre">NULL</span></code> указывает на отсутствие значения Вы не можете знать каков
+бужет результат любого сравнения с <code class="docutils literal notranslate"><span class="pre">NULL</span></code>. Часто Вам различать строки, содержащие
+значения <code class="docutils literal notranslate"><span class="pre">NULL</span></code> в каком-либо столбце. Для этого существует специальный оператор</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">IS</span> <span class="pre">NULL</span></code>. Выберем из нашей БД заказчиков с NULL значениями в столбце <strong>postalCode</strong>:</p>
+</div></blockquote>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">SELCT</span><span class="w"> </span><span class="n">customerName</span><span class="p">,</span><span class="n">city</span><span class="p">,</span><span class="n">country</span><span class="p">,</span><span class="n">creditLimit</span><span class="p">,</span><span class="n">postalCode</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">customers</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">postalCode</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="c1">-------------------------------+-------------------+-------------+-------------+------------+</span>
+<span class="o">|</span><span class="w">         </span><span class="n">customerName</span><span class="w">          </span><span class="o">|</span><span class="w">       </span><span class="n">city</span><span class="w">        </span><span class="o">|</span><span class="w">   </span><span class="n">country</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">creditLimit</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">postalCode</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------------------+-------------------+-------------+-------------+------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">King</span><span class="w"> </span><span class="n">Kong</span><span class="w"> </span><span class="n">Collectables</span><span class="p">,</span><span class="w"> </span><span class="n">Co</span><span class="p">.</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">Central</span><span class="w"> </span><span class="n">Hong</span><span class="w"> </span><span class="n">Kong</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Hong</span><span class="w"> </span><span class="n">Kong</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">58600</span><span class="w">       </span><span class="o">|</span><span class="w">            </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Down</span><span class="w"> </span><span class="k">Under</span><span class="w"> </span><span class="n">Souveniers</span><span class="p">,</span><span class="w"> </span><span class="n">Inc</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">Auckland</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">Zealand</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">88000</span><span class="w">       </span><span class="o">|</span><span class="w">            </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Asian</span><span class="w"> </span><span class="n">Treasures</span><span class="p">,</span><span class="w"> </span><span class="n">Inc</span><span class="p">.</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">Cork</span><span class="w">              </span><span class="o">|</span><span class="w"> </span><span class="n">Ireland</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="mi">0</span><span class="w">           </span><span class="o">|</span><span class="w">            </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">GiftsForHim</span><span class="p">.</span><span class="n">com</span><span class="w">               </span><span class="o">|</span><span class="w"> </span><span class="n">Auckland</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">Zealand</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">77700</span><span class="w">       </span><span class="o">|</span><span class="w">            </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Extreme</span><span class="w"> </span><span class="n">Desk</span><span class="w"> </span><span class="n">Decorations</span><span class="p">,</span><span class="w"> </span><span class="n">Ltd</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Wellington</span><span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">Zealand</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">86800</span><span class="w">       </span><span class="o">|</span><span class="w">            </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Frau</span><span class="w"> </span><span class="n">da</span><span class="w"> </span><span class="n">Collezione</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">Milan</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="n">Italy</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">34800</span><span class="w">       </span><span class="o">|</span><span class="w">            </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Kellys</span><span class="w"> </span><span class="n">Gift</span><span class="w"> </span><span class="n">Shop</span><span class="w">              </span><span class="o">|</span><span class="w"> </span><span class="n">Auckland</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">Zealand</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">110000</span><span class="w">      </span><span class="o">|</span><span class="w">            </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------------------+-------------------+-------------+-------------+------------+</span>
+</pre></div>
+</div>
+<p>Теперь Вы знаете как можно строить запросы к таблицам, используя любые условия.
+Далее следует: агрегатные функции и просто функции, <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>,``ORDER BY``.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Нижняя область">
+        <a href="05.query2.html" class="btn btn-neutral float-left" title="Шаг 5 - SELECT - дальше и глубже" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+        <a href="07.agregate.html" class="btn btn-neutral float-right" title="Шаг 7 - Обобщение данных с помощью агрегатных функций" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Авторские права 2024, Алексей Шило. Сергей Шило.. </p>
+  </div>
+
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

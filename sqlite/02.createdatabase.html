@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Шаг 2 - Создание и удаление БД &mdash; документация Первые Шаги </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=372fde1a"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=5b699b7f"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Шаг 3 - Создание и удаление таблиц" href="03.create.html" />
+    <link rel="prev" title="Шаг 1. Установка" href="01.install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Первые Шаги
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../db.html">Введение в Базы данных</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="__index.html">SQLITE шаг за шагом</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01.install.html">Шаг 1. Установка</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Шаг 2 - Создание и удаление БД</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sqlite3">Создание БД при помощи консольного клиента sqlite3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python">Начало работы в python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#c-dotnet">Начало работы в c#(dotnet)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#java">Начало работы в JAVA</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="03.create.html">Шаг 3 - Создание и удаление таблиц</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.query.html">Шаг 4 - Извлечение информации из таблиц</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.query2.html">Шаг 5 - SELECT - дальше и глубже</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06.query3.html">Шаг 6 - SELECT - операторы сравнения, логические и специальные</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07.agregate.html">Шаг 7 - Обобщение данных с помощью агрегатных функций</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08.join.html">Шаг 8 - Выбор данных из нескольких таблиц</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09.inner.html">Шаг 9 - Помещение одного запроса внутрь другого</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10.relquery.html">Шаг 10 - Связанные подзапросы</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11.exists.html">Шаг 11 - Использование оператора EXISTS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12.anyall.html">Шаг 12 - Использование операторов ANY, ALL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13.union.html">Шаг 13 - Использование команды UNION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14.update.html">Шаг 14 - Ввод, удаление и изменение значений полей</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mssql.html">Microsoft SQL Server</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Первые Шаги</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Навигация по страницам">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="__index.html">SQLITE шаг за шагом</a></li>
+      <li class="breadcrumb-item active">Шаг 2 - Создание и удаление БД</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sqlite/02.createdatabase.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Шаг 2 - Создание и удаление БД<a class="headerlink" href="#id1" title="Ссылка на этот заголовок"></a></h1>
+<section id="sqlite3">
+<h2>Создание БД при помощи консольного клиента sqlite3<a class="headerlink" href="#sqlite3" title="Ссылка на этот заголовок"></a></h2>
+<p>Проект SQLite предоставляет простую программу командной строки с именем sqlite3
+(или sqlite3.exe в Windows), которая позволяет пользователю вручную вводить
+и выполнять SQL-выражения в отношении базы данных SQLite или ZIP-архива.
+В этом документе представлено краткое введение в использование программы sqlite3.</p>
+<p>Ниже пример запуска, он создает файл с именем mydb</p>
+<blockquote>
+<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sqlite3<span class="w"> </span>mydb
+SQLite<span class="w"> </span>version<span class="w"> </span><span class="m">3</span>.36.0<span class="w"> </span><span class="m">2021</span>-06-18<span class="w"> </span><span class="m">18</span>:36:39
+Enter<span class="w"> </span><span class="s2">&quot;.help&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>usage<span class="w"> </span>hints.
+sqlite&gt;<span class="w"> </span>create<span class="w"> </span>table<span class="w"> </span>tbl1<span class="o">(</span>one<span class="w"> </span>text,<span class="w"> </span>two<span class="w"> </span>int<span class="o">)</span><span class="p">;</span>
+sqlite&gt;<span class="w"> </span>insert<span class="w"> </span>into<span class="w"> </span>tbl1<span class="w"> </span>values<span class="o">(</span><span class="s1">&#39;hello!&#39;</span>,10<span class="o">)</span><span class="p">;</span>
+sqlite&gt;<span class="w"> </span>insert<span class="w"> </span>into<span class="w"> </span>tbl1<span class="w"> </span>values<span class="o">(</span><span class="s1">&#39;goodbye&#39;</span>,<span class="w"> </span><span class="m">20</span><span class="o">)</span><span class="p">;</span>
+sqlite&gt;<span class="w"> </span><span class="k">select</span><span class="w"> </span>*<span class="w"> </span>from<span class="w"> </span>tbl1<span class="p">;</span>
+hello!<span class="p">|</span><span class="m">10</span>
+goodbye<span class="p">|</span><span class="m">20</span>
+sqlite&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="python">
+<h2>Начало работы в python<a class="headerlink" href="#python" title="Ссылка на этот заголовок"></a></h2>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="c1"># Создаем подключение к базе данных (файл my_database.db будет создан)</span>
+<span class="n">connection</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;my_database.db&#39;</span><span class="p">)</span>
+<span class="n">connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="c-dotnet">
+<h2>Начало работы в c#(dotnet)<a class="headerlink" href="#c-dotnet" title="Ссылка на этот заголовок"></a></h2>
+<p>Ниже пример кода в c# (<a class="reference external" href="https://learn.microsoft.com/ru-ru/dotnet/standard/data/sqlite/?tabs=netcore-cli">подробнее о с# по ссылке</a>)</p>
+<blockquote>
+<div><div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SqliteConnection</span><span class="p">(</span><span class="s">&quot;Data Source=hello.db&quot;</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">connection</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connection</span><span class="p">.</span><span class="n">CreateCommand</span><span class="p">();</span>
+<span class="w">    </span><span class="n">command</span><span class="p">.</span><span class="n">CommandText</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="s">@&quot;</span>
+<span class="s">        SELECT name</span>
+<span class="s">        FROM user</span>
+<span class="s">        WHERE id = $id</span>
+<span class="s">    &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">command</span><span class="p">.</span><span class="n">Parameters</span><span class="p">.</span><span class="n">AddWithValue</span><span class="p">(</span><span class="s">&quot;$id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">command</span><span class="p">.</span><span class="n">ExecuteReader</span><span class="p">())</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">reader</span><span class="p">.</span><span class="n">Read</span><span class="p">())</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reader</span><span class="p">.</span><span class="n">GetString</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
+
+<span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Hello, {name}!&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="java">
+<h2>Начало работы в JAVA<a class="headerlink" href="#java" title="Ссылка на этот заголовок"></a></h2>
+<p>Ниже пример кода в c# (<a class="reference external" href="https://habr.com/ru/sandbox/88039/">подробнее о JAVA по ссылке</a>)</p>
+<p>После создания проекта, создаю 2 класса.
+Первый класс для запуска:</p>
+<blockquote>
+<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.sql.SQLException</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">db</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">ClassNotFoundException</span><span class="p">,</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">conn</span><span class="p">.</span><span class="na">Conn</span><span class="p">();</span>
+<span class="w">            </span><span class="n">conn</span><span class="p">.</span><span class="na">CreateDB</span><span class="p">();</span>
+<span class="w">            </span><span class="n">conn</span><span class="p">.</span><span class="na">WriteDB</span><span class="p">();</span>
+<span class="w">            </span><span class="n">conn</span><span class="p">.</span><span class="na">ReadDB</span><span class="p">();</span>
+<span class="w">            </span><span class="n">conn</span><span class="p">.</span><span class="na">CloseDB</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Во втором классе сделана основная реализация:</p>
+<blockquote>
+<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.sql.Connection</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.sql.DriverManager</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.sql.ResultSet</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.sql.SQLException</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.sql.Statement</span><span class="p">;</span>
+
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">conn</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="n">conn</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Statement</span><span class="w"> </span><span class="n">statmt</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">resSet</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// --------ПОДКЛЮЧЕНИЕ К БАЗЕ ДАННЫХ--------</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Conn</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">ClassNotFoundException</span><span class="p">,</span><span class="w"> </span><span class="n">SQLException</span>
+<span class="w">       </span><span class="p">{</span>
+<span class="w">               </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">               </span><span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="s">&quot;org.sqlite.JDBC&quot;</span><span class="p">);</span>
+<span class="w">               </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="s">&quot;jdbc:sqlite:TEST1.s3db&quot;</span><span class="p">);</span>
+
+<span class="w">               </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;База Подключена!&quot;</span><span class="p">);</span>
+<span class="w">       </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// --------Создание таблицы--------</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">CreateDB</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">ClassNotFoundException</span><span class="p">,</span><span class="w"> </span><span class="n">SQLException</span>
+<span class="w">       </span><span class="p">{</span>
+<span class="w">            </span><span class="n">statmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conn</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
+<span class="w">            </span><span class="n">statmt</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;CREATE TABLE if not exists &#39;users&#39; (&#39;id&#39; INTEGER PRIMARY KEY AUTOINCREMENT, &#39;name&#39; text, &#39;phone&#39; INT);&quot;</span><span class="p">);</span>
+
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Таблица создана или уже существует.&quot;</span><span class="p">);</span>
+<span class="w">       </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// --------Заполнение таблицы--------</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">WriteDB</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">               </span><span class="n">statmt</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;INSERT INTO &#39;users&#39; (&#39;name&#39;, &#39;phone&#39;) VALUES (&#39;Petya&#39;, 125453); &quot;</span><span class="p">);</span>
+<span class="w">               </span><span class="n">statmt</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;INSERT INTO &#39;users&#39; (&#39;name&#39;, &#39;phone&#39;) VALUES (&#39;Vasya&#39;, 321789); &quot;</span><span class="p">);</span>
+<span class="w">               </span><span class="n">statmt</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;INSERT INTO &#39;users&#39; (&#39;name&#39;, &#39;phone&#39;) VALUES (&#39;Masha&#39;, 456123); &quot;</span><span class="p">);</span>
+
+<span class="w">               </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Таблица заполнена&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// -------- Вывод таблицы--------</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">ReadDB</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">ClassNotFoundException</span><span class="p">,</span><span class="w"> </span><span class="n">SQLException</span>
+<span class="w">       </span><span class="p">{</span>
+<span class="w">            </span><span class="n">resSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">statmt</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM users&quot;</span><span class="p">);</span>
+
+<span class="w">            </span><span class="k">while</span><span class="p">(</span><span class="n">resSet</span><span class="p">.</span><span class="na">next</span><span class="p">())</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                    </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resSet</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">);</span>
+<span class="w">                    </span><span class="n">String</span><span class="w">  </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resSet</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">);</span>
+<span class="w">                    </span><span class="n">String</span><span class="w">  </span><span class="n">phone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resSet</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;phone&quot;</span><span class="p">);</span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;ID = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="p">);</span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;name = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">);</span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;phone = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phone</span><span class="w"> </span><span class="p">);</span>
+<span class="w">             </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Таблица выведена&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// --------Закрытие--------</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">CloseDB</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">ClassNotFoundException</span><span class="p">,</span><span class="w"> </span><span class="n">SQLException</span>
+<span class="w">               </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">conn</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="w">                    </span><span class="n">statmt</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="w">                    </span><span class="n">resSet</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+
+<span class="w">                    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Соединения закрыты&quot;</span><span class="p">);</span>
+<span class="w">               </span><span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Нижняя область">
+        <a href="01.install.html" class="btn btn-neutral float-left" title="Шаг 1. Установка" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+        <a href="03.create.html" class="btn btn-neutral float-right" title="Шаг 3 - Создание и удаление таблиц" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Авторские права 2024, Алексей Шило. Сергей Шило.. </p>
+  </div>
+
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
